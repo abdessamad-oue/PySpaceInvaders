@@ -11,13 +11,13 @@ screen = pygame.display.set_mode((800, 600))
 
 # title and Icon
 pygame.display.set_caption("Space Invader")
-icon = pygame.image.load("img/icon.png")
+icon = pygame.image.load("img/icon.png").convert_alpha()
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 fps = 60
 
 # backgound
-bg = pygame.image.load('img/space_bg.png')
+bg = pygame.image.load('img/space_bg.png').convert_alpha()
 
 # background sounds
 # mixer.music.load('sounds/a_start_to_space.ogg')
@@ -25,7 +25,7 @@ bg = pygame.image.load('img/space_bg.png')
 # mixer.music.play(-1)
 
 # Player
-playerImg = pygame.image.load("img/spaceship.png")
+playerImg = pygame.image.load("img/spaceship.png").convert_alpha()
 playerX = 370
 playerY = 500
 playerX_change = 0
@@ -36,18 +36,18 @@ enemyX = []
 enemyY = []
 enemyX_change = []
 enemyY_change = []
-number_of_enemies = 5
+number_of_enemies = 20
 
 enemies_png = ['img/enemy.png', 'img/enemy2.png', 'img/enemy3.png']
 for i in range(number_of_enemies):
-    enemyImg.append(pygame.image.load(random.choice(enemies_png)))
+    enemyImg.append(pygame.image.load(random.choice(enemies_png)).convert_alpha())
     enemyX.append(random.randint(50, 750))
     enemyY.append(random.randint(20, 100))
     enemyX_change.append(config.ENEMY_X_SPEED)
     enemyY_change.append(config.ENEMY_Y_SPEED)
 
 # bullet
-bulletImg = pygame.image.load("img/bullet.png")
+bulletImg = pygame.image.load("img/bullet.png").convert_alpha()
 bulletX = 0
 bulletY = 480
 bulletY_change = config.BULLET_SPEED
@@ -99,8 +99,8 @@ def is_collision(enemy_x, enemy_y, bullet_x, bullet_y):
 explosion_group = pygame.sprite.Group()
 
 # game loop
-running = True
-while running:
+# running = 1
+while 1:
     clock.tick(fps)
     # Red, Green, Blue
     screen.fill((0, 0, 0))
@@ -109,7 +109,7 @@ while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            pygame.quit()
 
         # keyboard event
         if event.type == pygame.KEYDOWN:
